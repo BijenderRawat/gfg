@@ -15,23 +15,33 @@
  */
 
 class GeeksJourney {
-    public int[] z_function(int a[], int n) {
+    public static int[] z_function(int a[], int n) {
         int z[] = new int[n];
         int l = 0, r = 0;
         for (int i = 1; i < n; i++) {
-            if (i < r)
-                z[i] = Math.min(r - i, z[i - l]);
-            while (i + z[i] < n && a[z[i]] == a[i + z[i]])
-                z[i]++;
-            if (i + z[i] > r) {
-                l = i;
-                r = i + z[i];
+            if (i > r) {
+                l = r = i;
+                while (r < n && a[r - l] == a[r])
+                    r++;
+                z[i] = r - l;
+                r--;
+            } else {
+                int k = i - l;
+                if (z[k] < r - l + 1)
+                    z[i] = z[k];
+                else {
+                    l = i;
+                    while (r < n && a[r - l] == z[r])
+                        r++;
+                    z[i] = r - l;
+                    r--;
+                }
             }
         }
         return z;
     }
 
-    public int[] combine(int a[], int n, int b[], int m) {
+    public static int[] combine(int a[], int n, int b[], int m) {
         int ans[] = new int[n + m + 1];
         for (int i = 0; i < n; i++)
             ans[i] = a[i];
@@ -41,7 +51,7 @@ class GeeksJourney {
         return ans;
     }
 
-    public int[] geeksJourney(int geeksTown[], int n, int journey[], int m, int queries[][], int q) {
+    public static int[] geeksJourney(int geeksTown[], int n, int journey[], int m, int queries[][], int q) {
         int a[] = combine(geeksTown, n, journey, m);
         int z[] = z_function(a, a.length);
         int pre[] = new int[m];

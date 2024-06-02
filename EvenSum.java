@@ -7,11 +7,11 @@
  */
 
 class EvenSum {
-    public int findMin(int A[], int n) {
+    public static int findMin(int A[], int n) {
         int sum = 0;
         for (int i : A)
             sum += i;
-        if (sum % 2 == 0)
+        if ((sum & 1) == 0)
             return 0;
         int ans = -1;
         for (int i : A) {
@@ -28,5 +28,10 @@ class EvenSum {
             }
         }
         return ans;
+    }
+
+    public static void main(String[] args) {
+        int [] arr = {1, 4, 2, 2};
+        System.out.println(findMin(arr, 4));
     }
 }

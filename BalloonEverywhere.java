@@ -9,16 +9,16 @@ public class BalloonEverywhere {
     public static int maxInstance(String s) {
         int[] array = new int[26];
         for (char ch : s.toCharArray())
-            array[ch - 96]++;
+            array[ch - 97]++;
         int ans = 0;
-        while (array['b' - 96] > 0 && array['a' - 96] > 0 && array['l' - 96] > 1 && array['o' - 96] > 1
-                && array['n' - 96] > 0) {
+        while (array['b' - 97] > 0 && array['a' - 97] > 0 && array['l' - 97] > 1 && array['o' - 97] > 1
+                && array['n' - 97] > 0) {
             ans++;
-            array['b' - 96]--;
-            array['a' - 96]--;
-            array['l' - 96] -= 2;
-            array['o' - 96] -= 2;
-            array['n' - 96]--;
+            array['b' - 97]--;
+            array['a' - 97]--;
+            array['l' - 97] -= 2;
+            array['o' - 97] -= 2;
+            array['n' - 97]--;
         }
         return ans;
     }
